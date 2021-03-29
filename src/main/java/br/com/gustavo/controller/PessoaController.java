@@ -4,6 +4,7 @@ import br.com.gustavo.banco.Pessoa;
 import br.com.gustavo.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,9 +23,9 @@ public class PessoaController {
         repository.save(pessoa);
     }
 
-    @RequestMapping("/remove")
-    public void removePessoa(@RequestBody Pessoa pessoa){
-        repository.delete(pessoa);
+    @RequestMapping("/remove/{id}")
+    public void removePessoa(@PathVariable("id") Long id){
+        repository.deleteById(id);
     }
 
     @RequestMapping("/busca")

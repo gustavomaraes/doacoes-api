@@ -4,6 +4,7 @@ import br.com.gustavo.banco.Utensilio;
 import br.com.gustavo.repository.UtensilioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,9 +23,9 @@ public class UtensilioController {
         repository.save(utensilio);
     }
 
-    @RequestMapping("/remove")
-    public void removeUtensilio(Utensilio utensilio){
-        repository.delete(utensilio);
+    @RequestMapping("/remove/{id}")
+    public void removeUtensilio(@PathVariable("id") Long id){
+        repository.deleteById(id);
     }
 
     @RequestMapping("/busca")
