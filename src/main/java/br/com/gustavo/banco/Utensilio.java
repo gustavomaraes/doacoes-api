@@ -1,27 +1,25 @@
 package br.com.gustavo.banco;
 
-import org.jetbrains.annotations.NotNull;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(schema = "doacoes", name = "utensilio")
 public class Utensilio {
 
     @Id
+    @GeneratedValue
     private Long id;
 
-    @NotNull
+    @Column(nullable = false)
     private String nome;
 
     private String descricao;
 
-    @NotNull
+    @Column(nullable = false)
     private Long quantidade;
 
-    @NotNull
+    @Column(nullable = false)
     private boolean disponivel;
 
     /*

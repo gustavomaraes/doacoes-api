@@ -11,4 +11,6 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
 
     Pessoa findByCpfOrNome(String cpf, String nome);
 
+    Pessoa findByCpf(String cpf);
+
 }

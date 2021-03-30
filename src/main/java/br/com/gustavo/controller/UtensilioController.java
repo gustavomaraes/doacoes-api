@@ -4,10 +4,7 @@ import br.com.gustavo.banco.Utensilio;
 import br.com.gustavo.repository.UtensilioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,29 +15,41 @@ public class UtensilioController {
     @Autowired
     UtensilioRepository repository;
 
-    @RequestMapping("/grava")
-    public void gravaUtensilio(Utensilio utensilio){
-        repository.save(utensilio);
+    @ResponseBody
+    @RequestMapping(value = "/grava", method = RequestMethod.POST)
+    public String gravaUtensilio(Utensilio utensilio){
+        try{
+            repository.save(utensilio);
+            return "Sucesso!";
+        } catch (Exception e){
+            return "Erro na gravação: " + e.getMessage();
+        }
     }
 
-    @RequestMapping("/remove/{id}")
-    public void removeUtensilio(@PathVariable("id") Long id){
-        repository.deleteById(id);
+    @ResponseBody
+    @RequestMapping(value = "/remove/{id}", method = RequestMethod.POST)
+    public String removeUtensilio(@PathVariable("id") Long id){
+        try{
+            repository.deleteById(id);
+            return "Sucesso!";
+        } catch (Exception e){
+            return "Erro na exclusão: " + e.getMessage();
+        }
     }
 
-    @RequestMapping("/busca")
+    @RequestMapping(value = "/busca", method = RequestMethod.GET)
     @ResponseBody
     public Utensilio buscaUtensilio(@RequestBody String nome){
         return repository.findByNome(nome);
     }
 
-    @RequestMapping("/busca-lista")
+    @RequestMapping(value = "/busca-lista", method = RequestMethod.GET)
     @ResponseBody
     public List<Utensilio> buscaListaUtensilios(@RequestBody String nome){
         return repository.findByNomeLike(nome);
     }
 
-    @RequestMapping("/busca-todos")
+    @RequestMapping(value = "/busca-todos", method = RequestMethod.GET)
     @ResponseBody
     public List<Utensilio> buscaTodos(){
         return repository.findAll();

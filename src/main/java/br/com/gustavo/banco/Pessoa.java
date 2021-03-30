@@ -1,22 +1,20 @@
 package br.com.gustavo.banco;
 
-import org.jetbrains.annotations.NotNull;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(schema = "doacoes", name = "pessoa")
 public class Pessoa {
 
     @Id
+    @GeneratedValue
     private Long id;
 
-    @NotNull
+    @Column(nullable = false)
     private String nome;
 
-    @NotNull
+    @Column(nullable = false, unique = true)
     private String cpf;
 
     private String telefone;
