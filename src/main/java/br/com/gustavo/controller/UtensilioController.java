@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@CrossOrigin(origins = "http://localhost:8081")
 @RequestMapping("/utensilio")
 public class UtensilioController {
 
