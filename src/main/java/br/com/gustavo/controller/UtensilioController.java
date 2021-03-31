@@ -17,7 +17,7 @@ public class UtensilioController {
 
     @ResponseBody
     @RequestMapping(value = "/grava", method = RequestMethod.POST)
-    public String gravaUtensilio(Utensilio utensilio){
+    public String gravaUtensilio(@RequestBody Utensilio utensilio){
         try{
             repository.save(utensilio);
             return "Sucesso!";
